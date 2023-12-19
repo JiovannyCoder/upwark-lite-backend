@@ -7,7 +7,6 @@ const cors = require('cors')
 
 const corsOptions = {
     origins: process.env.FRONTEND_ORIGIN,
-    credentials: true
 }
 
 // routes resources
@@ -19,10 +18,8 @@ const app = express()
 // middlewares
 app.use(morgan('dev'))
 app.use(express.json())
+app.use(cors(corsOptions))
 
-if(process.env.NODE_ENV === 'development') {
-    app.use(cors(corsOptions))
-}
 
 // routes
 app.get('/', (req, res) => {
