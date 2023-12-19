@@ -8,12 +8,21 @@
     ],
     "routes": [
       {
-          "src": "/(.*)",
-          "dest": "server.js",
-          "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-          "headers": {
-            "Access-Control-Allow-Origin": "*"
+        "handle": "middleware",
+        "src": "/",
+        "method": "OPTIONS",
+        "middleware": [
+          {
+            "name": "cors",
+            "options": {
+              "origin": ["https://upwark-lite-frontend.vercel.app"]
+            }
           }
+        ]
+      },
+      {
+          "src": "/(.*)",
+          "dest": "server.js"
       }
   ]
 }
